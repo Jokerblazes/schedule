@@ -15,6 +15,11 @@ import com.joker.schedule.entity.Scheduled;
 import com.joker.schedule.strategy.ScheduleStrategy;
 import com.joker.support.scanner.ClasspathPackageScanner;
 
+/**
+ * 定时调度类
+ * @author joker
+ *  {@link https://github.com/Jokerblazes/schedule.git}
+ */
 public class ScheduleHelper {
 	
 	private Logger logger = LoggerFactory.getLogger(ScheduleHelper.class);
@@ -25,18 +30,35 @@ public class ScheduleHelper {
 		this.strategy = strategy;
 	}
 	
-	//添加定时任务
+	/**
+	 * 添加定时任务
+	 * @param entity
+	 * @author joker
+	 * {@link https://github.com/Jokerblazes/schedule.git}
+	 */
 	public void addSchedule(ScheduleEntity entity) {
 		logger.info("添加定时任务 {}",entity);
 		strategy.handleAddSchedule(entity);
 	}
 	
 	//删除定时任务
+	/**
+	 * 删除定时任务
+	 * @param entity
+	 * @author joker
+	 * {@link https://github.com/Jokerblazes/schedule.git}
+	 */
 	public void removeSchedule(ScheduleEntity entity) {
 		logger.info("删除定时任务 {}",entity);
 		strategy.handleRemoveSchedule(entity);
 	}
 	
+	/**
+	 * 初始化定时任务
+	 * @param beanPackage
+	 * @author joker
+	 * {@link https://github.com/Jokerblazes/schedule.git}
+	 */
 	public void initSchedule(String beanPackage) {
 		//扫描包取出包中的所有类
 		logger.info("准备扫描包 {}",beanPackage);
@@ -85,7 +107,11 @@ public class ScheduleHelper {
 		}
 	}
 	
-	//ScheduleHelper构建工厂
+	/**
+	 * ScheduleHelper构建工厂
+	 * @author joker
+	 * {@link https://github.com/Jokerblazes/schedule.git}
+	 */
 	public static class ScheduleFactory {
 		private static Map<Class,ScheduleStrategy> strategyMap = new HashMap<Class, ScheduleStrategy>();
 		public static ScheduleHelper getScheduleHelper(Class strategyClazz) {
